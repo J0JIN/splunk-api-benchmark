@@ -103,6 +103,14 @@ This benchmark helps show why export-style streaming is often preferable for:
 - automated alert enrichment
 - high-cardinality search result retrieval
 
+### Real-world Incident
+
+During high traffic spikes such as DDoS or over-detection scenarios, our Splunk integration script frequently experienced severe delays and timeouts.
+
+The same query that normally completed in 5–10 seconds could take several minutes, sometimes exceeding 10 minutes, leading to downstream processing failures.
+
+This issue was traced back not to Splunk infrastructure itself, but to the results retrieval mechanism using `job.results()` and the underlying `ResultsReader`.
+
 ## Notes
 
 - Use search queries that produce a significant number of results to observe the performance gap.
